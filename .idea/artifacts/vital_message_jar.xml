@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="vital_message:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/vital_message_jar</output-path>
+    <root id="archive" name="vital_message.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="vital_message" />
+    </root>
+  </artifact>
+</component>
