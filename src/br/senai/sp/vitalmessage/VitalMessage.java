@@ -7,15 +7,15 @@ import java.util.random.RandomGenerator;
 
 public class VitalMessage {
 
-    public void start(){
+    public void start() {
 
-        System.out.print("\033[H\033[2J");
-        //String[] comando = new String[]{"clear"};
-//        try {
-//            Runtime.getRuntime().exec(comando);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        limparTela();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         var leitor = new Scanner(System.in);
 
@@ -23,7 +23,7 @@ public class VitalMessage {
         System.out.println();
 
         var escolha = 0;
-        while (escolha < 4 || escolha > 10){
+        while (escolha < 4 || escolha > 10) {
             System.out.print("HOW DIFFICULT? (4-10): ");
             escolha = leitor.nextInt();
         }
@@ -34,7 +34,7 @@ public class VitalMessage {
         var random = new Random();
         StringBuilder frase = new StringBuilder();
 
-        for (int i = 0; i < escolha; i++){
+        for (int i = 0; i < escolha; i++) {
             var numeroSorteado = random.nextInt(max - min + 1) + min;
             char letra = (char) numeroSorteado;
             frase.append(letra);
@@ -49,7 +49,13 @@ public class VitalMessage {
             throw new RuntimeException(e);
         }
 
-        System.out.print("\033[H\033[2J");
+        limparTela();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         var leitor2 = new Scanner(System.in);
         System.out.println("TYPE THE MESSAGE NOW!! ");
@@ -64,6 +70,26 @@ public class VitalMessage {
         } else {
             System.out.println("YOU GOT WRONG\nYOU SHOULD HAVE SENT: " + frase);
             System.out.println();
+        }
+
+        System.out.println();
+        System.out.println();
+
+        String continuar = "";
+
+        while (continuar.isEmpty()){
+            System.out.println("Digite \"S\" e pressione ENTER para finalizar...");
+            continuar = leitor.next();
+        }
+
+    }
+
+    private void limparTela() {
+
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
